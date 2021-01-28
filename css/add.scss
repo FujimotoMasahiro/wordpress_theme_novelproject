@@ -1,0 +1,144 @@
+// ========================================
+//  aem scss templates
+//      ver 2.0.3
+//		既存サイトに後から追加される用のscssファイル。影響範囲を狭めてある
+// ======================================== 
+@charset 'UTF-8';
+
+
+/* ========================================
+    common
+        サイト全体の設定、定義など
+======================================== */
+@import "common/variables";
+@import "common/mixins";
+
+
+
+
+/* ========================================
+    pager
+======================================== */
+@mixin pager-btn {
+    color: $C_GOLD;
+    background-color: black;
+    margin: 8px;
+    letter-spacing: 0.1em;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    font-weight: bold;
+    @include mq-mb {
+        margin: 4px;
+        font-size: 1.4rem;
+    }
+}
+
+.pager {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+    // 戻る
+    .btn-back {
+        @include pager-btn;
+        @include flexCenter;
+        @include arrow-left;
+        align-items: baseline;
+        width: 74px;
+        height: 30px;
+        @include mq-mb {
+            width: 60px;
+            height: 26px;
+        }
+        &::before {
+            font-size: 15px;
+            margin-right: 2px;
+            @include mq-mb {
+                font-size: 13px;
+            }
+        }
+    }
+
+    // 一覧へ
+    .btn-list {
+        @include pager-btn;
+        @include flexCenter;
+        align-items: baseline;
+        width: 74px;
+        height: 30px;
+        @include mq-mb {
+            height: 26px;
+        }
+    }
+    
+    // 次へ
+    .btn-next {
+        @include pager-btn;
+        @include flexCenter;
+        @include arrow-right;
+        align-items: baseline;
+        width: 74px;
+        height: 30px;
+        @include mq-mb {
+            width: 60px;
+            height: 26px;
+        }
+        &::after {
+            font-size: 15px;
+            margin-left: 2px;
+            @include mq-mb {
+                font-size: 13px;
+            }
+        }
+    }
+
+    // 番号付きページング
+    .btn-num {
+        display: flex;
+        &__item {
+            @include pager-btn;
+            @include flexCenter;
+            align-items: baseline;
+            width: 30px;
+            height: 30px;
+            @include mq-mb {
+                width: 26px;
+                height: 26px;
+            }
+            &.current {
+                background-color: $C_GOLD;
+                color: black;
+            }
+        }
+    }
+
+    // ボタンの打ち消し
+    .btn-none {
+        pointer-events: none;
+        opacity: 0.3;
+    }
+}
+
+
+
+/* ========================================
+    post
+======================================== */
+.cont_post {
+    img {
+        max-width: 100%;
+        height: auto !important;
+    }
+    a:not(.btn) {
+        color: $C_GOLD;
+        text-decoration: underline;
+    }
+    .table-wrap {
+        overflow: scroll;
+        -ms-overflow-style: none; /* IE, Edge 対応 */
+        scrollbar-width: none; /* Firefox 対応 */
+        &::-webkit-scrollbar { /* Chrome, Safari 対応 */
+            display: none;
+        }
+    }
+}
